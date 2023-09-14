@@ -1,0 +1,13 @@
+.add-patient-reported  {
+    border-radius: 15px;
+    background-color: orangered;
+    border: solid black;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    width: 300px;
+    height: 45px;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}

@@ -1,0 +1,304 @@
+.prescription-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.prescription-form-data, .drug-info {
+    flex-basis: 800px;
+}
+
+.third-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.third-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.fourth-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.fourth-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.fifth-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.fifth-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.sixth-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.sixth-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.seventh-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.seventh-bar textarea {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 95%;
+    height: 35px;
+    border-radius: 5px;
+    border-radius: 5px;
+}
+
+.seventh-bar p {
+    font-size: small;
+    margin-left: 0.6rem;
+    margin-top: -20px;
+}
+
+.eigth-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.eigth-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.eigth-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.ninth-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.ninth-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.tenth-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.tenth-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.eleventh-bar label {
+    background-color: white;
+    color: black;
+    font-size: large;
+}
+
+.eleventh-bar input {
+    border: lightgray solid 1px;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.add, .subs, .favs {
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+.add img {
+    width: 20px;
+    height: 20px;
+    margin-top: 16px;
+}
+
+.subs button {
+    border: solid orangered;
+    border-radius: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.favs img {
+    width: 20px;
+    height: 20px;
+    margin-top: 16px;
+}
+
+.twelfth-bar button {
+    background-color: orangered;
+    color: white;
+    border: solid black;
+    border-radius: 10px;
+    width: 90%;
+    margin-left: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.vertical-line {
+    border-left: 1px solid orangered;
+}
+
+.drug-info {
+    margin-left: 1rem;
+    color: gray;
+}
+
+.drug-info h2 {
+    font-weight: bolder;
+}
+
+.drug-info p:nth-child() {
+    font-weight: bolder;
+}
+
+.copay-details {
+    border: lightgray solid;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.bold {
+    font-size: larger;
+    color: black;
+    margin-top: 0;
+}
+
+.alternatives {
+    border: solid lightgray;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.alternatives p {
+    margin: 0;
+    margin-left: 3rem;
+    color: black;
+}
+
+.alternatives p:first-child {
+    color:mediumblue;
+}
+
+.alternatives p:nth-child(4) {
+    color:mediumblue;
+}
+
+.alternatives p:last-child {
+    margin-bottom: 1rem;
+}
+
+.part-three p {
+    margin: 0;
+}
+
+.part-three p:first-child {
+    margin-top: 1rem;
+}
+
+.part-four p{
+    margin: 0;
+}
+
+.part-four p:first-child {
+    margin-top: 1rem;
+}
+
+.copay-details p {
+    margin-top: 0;
+}
+
+.section-title{
+    font-size: larger;
+    color: black;
+}
+
+.part-one {
+    display: flex;
+    flex-direction: row;
+}
+
+.part-one p:first-child{
+    color: black;
+    margin-right: 2rem;
+}
+
+.part-one p:nth-child(2) {
+    border: black solid;
+    width: 70px;
+    text-align: center;
+    color: orangered;
+}
+
+.next-title {
+    font-size: large;
+    color: black;
+}
+
+.part-two p{
+    margin: 0;
+}
+
+.part-two p:nth-child(2) {
+    color: mediumblue;
+}

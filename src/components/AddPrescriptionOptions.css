@@ -1,0 +1,30 @@
+.option-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: orangered;
+    margin-top: 2rem;
+    width: 25%;
+    height: 75px;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+.clicked-button {
+    background-color: orangered;
+    border: none;
+    color: white;
+    font-size: x-large;
+}
+
+button {
+    background-color: white;
+    padding: 0.3rem;
+    color: orangered;
+    font-weight: lighter;
+    height: 45px;
+    margin-top: 1rem;
+    border: none;
+    font-size: x-large;
+}

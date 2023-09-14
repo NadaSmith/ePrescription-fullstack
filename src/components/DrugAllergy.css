@@ -1,0 +1,47 @@
+.drug-allergy {
+    border: solid black;
+    width: 30%;
+    height: 15%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+
+.drug-allergy h1 {
+    color: orangered;
+    background-color:khaki;
+}
+
+.drug-allergy img {
+    width: 20px;
+    height: 20px;
+    margin-top: 0px;
+    background-color: khaki;
+}
+
+.drug-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: khaki;
+}
+
+.drug-title h1 {
+    margin-left: 0.5rem;
+    margin-top: 3.5px;
+    font-weight: lighter;
+}
+
+.drug-box {
+    background-color: khaki;
+}
+
+.drug-box p {
+    border: solid black;
+    height: 30px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 5px;
+    margin-top: -20px;
+}

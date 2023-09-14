@@ -1,0 +1,48 @@
+.top h1 {
+    font-weight: lighter;
+    color: black;
+    background-color: white;
+    text-align: left;
+    margin-left: 5px;
+    margin-top: 8px;
+}
+.top {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.top img {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+.patient-info {
+    border: solid black;
+    width: 800px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+}
+
+.drug, .pharm {
+    background-color: white;
+    color: orangered;
+    margin-left: 8rem;
+    width: 75%;
+    border: black solid;
+}
+
+.pharm {
+    margin-right: 1rem;
+}
+

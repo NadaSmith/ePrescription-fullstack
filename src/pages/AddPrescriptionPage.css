@@ -1,0 +1,30 @@
+
+.add-prescription-page-title {
+    display: flex;
+    flex-direction: row;
+    background-color: #386890;
+    height: 40px;
+}
+
+.add-prescription-page-title h1 {
+    color: white;
+    background-color: #386890;
+    width: 100%;
+    height: 30px;
+    margin-top: auto;
+    margin-left: auto;
+    font-weight: lighter;
+    padding: 0.5rem;
+}
+
+.add-prescription-page-title img {
+    background-color: none;
+    width: 50px;
+    height: 41.5px;
+    margin-top: 0.3rem;
+    background-color: #386890;
+}
+
+.add-prescription-form {
+    border: black solid;
+}

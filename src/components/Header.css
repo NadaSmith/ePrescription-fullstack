@@ -1,0 +1,41 @@
+* {
+    background-color: white;
+}
+
+.global-header {
+    display: flex;
+    flex-direction: row;
+    height: 90px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70px;
+
+}
+
+.darkened {
+    color: midnightblue;
+}
+
+.lightened {
+    color: orangered;
+}
+
+.header h1 {
+    background-color: transparent;
+    margin-left: 2rem;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin-top: -40px;
+}
+
+.global-header img {
+    width: 150px;
+    background-color: transparent;
+}

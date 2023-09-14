@@ -1,0 +1,52 @@
+.name-banner {
+    background-color: #386890;
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    margin-top: -20px;
+}
+
+.name-lock p {
+    background-color: #386890;
+    color: orangered;
+    font-weight: lighter;
+    font-size: large;
+    margin-left: 0;
+    margin: auto;
+    width: 14rem;
+}
+
+.name-banner img {
+    width: 30px; 
+    height: 30px;
+    background-color: transparent;
+    margin-top: 0;
+
+}
+
+emb {
+    background-color: #386890;
+    text-decoration: underline;
+}
+
+.name-lock {
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.name-banner button {
+    border-radius: 20px;
+    background-color: orangered;
+    color: white;
+    font-weight: bold;
+    width: 25%;
+    height: 35px;
+    margin-left: 65%;
+    margin-right: 10px;
+    font-size: medium;
+    border: none;
+    margin-top: 5px;
+}

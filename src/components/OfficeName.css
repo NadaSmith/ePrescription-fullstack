@@ -1,0 +1,20 @@
+.office-name h1 {
+    color: black;
+    font-weight: lighter;
+    text-align: left;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.office-name hr:last-child {
+    margin-top: -8px;
+    border: 1px solid black;
+}
+
+.office-name p {
+    text-align: center;
+    color: blue;
+    margin-top: -5px;
+    font-size: 10px;
+}
+
