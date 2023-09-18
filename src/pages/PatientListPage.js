@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientListPage.css";
 import NewPatientForm from "./NewPatientForm";
-
+import axios from "axios";
+import api from '../api/api';
 
 
 function PatientListPage() {
@@ -46,121 +47,205 @@ function PatientListPage() {
         setBirthDate('');
     };
 
-    // Function to fetch patient data from local storage during component mount
-    const fetchLocalPatientData = () => {
-    const storedData = localStorage.getItem("patientData");
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
-    return [];
-    };
+    // // Function to fetch patient data from local storage during component mount
+    // const fetchLocalPatientData = () => {
+    // const storedData = localStorage.getItem("patientData");
+    // if (storedData) {
+    //   return JSON.parse(storedData);
+    // }
+    // return [];
+    // };
 
-    // Function to fetch patient data from the JSON file
-    const fetchPatientData = async () => {
-    try {
-      const response = await fetch("https://gist.githubusercontent.com/NadaSmith/377c51388ce91a7695592dc16f960509/raw/5f9039eedc6a6ed79abdf1554d92a8520d4bc769/PatientData.json");
-      console.log("Fetch Response:", response);
+    // // Function to fetch patient data from the JSON file
+    // const fetchPatientData = async () => {
+    // try {
+    //   const response = await fetch("https://gist.githubusercontent.com/NadaSmith/377c51388ce91a7695592dc16f960509/raw/5f9039eedc6a6ed79abdf1554d92a8520d4bc769/PatientData.json");
+    //   console.log("Fetch Response:", response);
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
 
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error fetching patient data:", error);
-      return [];
-    }
-};
+    //   const data = await response.json();
+    //   return data;
+    // } catch (error) {
+    //   console.error("Error fetching patient data:", error);
+    //   return [];
+    // }
+//};
 
-    useEffect(() => {                                                               //useEffect hook runs when the component mounts; mounting includs reloading; causes table to populate 
-        const fetchData = async () => {                                                 //have to change the alert function to a modal or alert component so the page won't reload; then the useEffect won't be mounted again so it will not autopopulate the data in the chart
-            const dataFromJsonFile = await fetchPatientData();
-            console.log("Fetched data:", dataFromJsonFile)
-            if (dataFromJsonFile.length > 0) {
-                setPatientData(dataFromJsonFile);
-                localStorage.setItem("patientData", JSON.stringify(dataFromJsonFile));
-            } else {
-                const dataFromLocalStorage = fetchLocalPatientData();
-                setPatientData(dataFromLocalStorage);
-            }
-        }
+    // useEffect(() => {                                                               //useEffect hook runs when the component mounts; mounting includs reloading; causes table to populate 
+    //     const fetchData = async () => {                                                 //have to change the alert function to a modal or alert component so the page won't reload; then the useEffect won't be mounted again so it will not autopopulate the data in the chart
+    //         const dataFromJsonFile = await fetchPatientData();
+    //         console.log("Fetched data:", dataFromJsonFile)
+    //         if (dataFromJsonFile.length > 0) {
+    //             setPatientData(dataFromJsonFile);
+    //             localStorage.setItem("patientData", JSON.stringify(dataFromJsonFile));
+    //         } else {
+    //             const dataFromLocalStorage = fetchLocalPatientData();
+    //             setPatientData(dataFromLocalStorage);
+    //         }
+    //     }
 
+    //     fetchData();
+    // }, []);
+
+    //fetching patient data from my API
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await api.get('/patients'); // Replace with your API endpoint
+            setPatientData(response.data);
+          } catch (error) {
+            console.error('Error fetching patient data:', error);
+          }
+        };
+      
         fetchData();
     }, []);
+      
 
-    const handleSearch = async () => {
-        //input value from search field
-        if (!searchValue) {              
-            //if empty search value, don't search
-            return;
-        }
-        //Convert the search value and patient names to lowercase for case-insenstive comparison
-        const lowercaseSearchValue = searchValue.toLowerCase();
+    // const handleSearch = async () => {
+    //     //input value from search field
+    //     if (!searchValue) {              
+    //         //if empty search value, don't search
+    //         return;
+    //     }
+    //     //Convert the search value and patient names to lowercase for case-insenstive comparison
+    //     const lowercaseSearchValue = searchValue.toLowerCase();
 
-        //checking to see if value has been lowercased
-        console.log("Lowercase Search Value:", lowercaseSearchValue);
+    //     //checking to see if value has been lowercased
+    //     console.log("Lowercase Search Value:", lowercaseSearchValue);
 
-        //log the content of the patientData array
-        console.log("Patient Data:", patientData);
+    //     //log the content of the patientData array
+    //     console.log("Patient Data:", patientData);
 
-        //fetch pt data (by name) from local patientData state
-        const foundPatient = patientData.find(
-            (patient) => patient.name.toLowerCase() === lowercaseSearchValue
-        );
+    //     //fetch pt data (by name) from local patientData state
+    //     const foundPatient = patientData.find(
+    //         (patient) => patient.name.toLowerCase() === lowercaseSearchValue
+    //     );
     
-        //checking to see what info has been passed to foundPatient
-        console.log("Found Patient:", foundPatient);
+    //     //checking to see what info has been passed to foundPatient
+    //     console.log("Found Patient:", foundPatient);
 
-        if (foundPatient) {
-            // Save the found patient in local storage
-            localStorage.setItem("foundPatient", JSON.stringify(foundPatient));
-            console.log("Fetched patient from Local Storage:", foundPatient);
-        } else {
-            // If patient is not found, show the alert and clear local storage
-            alert("Patient not found."); //The alert function has default behavior triggers a page reload when alert is dismissed. alert function is synchronous and doesnt provide a way to control the browser: Make a model or alert component for this function
-            localStorage.removeItem("foundPatient");
+    //     if (foundPatient) {
+    //         // Save the found patient in local storage
+    //         localStorage.setItem("foundPatient", JSON.stringify(foundPatient));
+    //         console.log("Fetched patient from Local Storage:", foundPatient);
+    //     } else {
+    //         // If patient is not found, show the alert and clear local storage
+    //         alert("Patient not found."); //The alert function has default behavior triggers a page reload when alert is dismissed. alert function is synchronous and doesnt provide a way to control the browser: Make a model or alert component for this function
+    //         localStorage.removeItem("foundPatient");
+    //     }
+
+    //     //Add a delay before the page reloads 
+    //     setTimeout(() => {
+    //         window.location.reload(); // Reload the page
+    //     }, 3000); //3 seconds
+    // };
+
+    //makes an API request for searching pts. Send search term as a query parameter to backend
+    const handleSearch = async () => {
+        if (!searchValue) {
+          return;
         }
-
-        //Add a delay before the page reloads 
-        setTimeout(() => {
-            window.location.reload(); // Reload the page
-        }, 3000); //3 seconds
-    };
+      
+        try {
+          const response = await api.get(`/patients?search=${searchValue}`); // Modify the endpoint
+          setPatientData(response.data);
+        } catch (error) {
+          console.error('Error searching patients:', error);
+        }
+    };  //Update the endpoint (/patients?search=${searchValue}) to match your backend's search endpoint.
+      
       
 
     //function to add a new patient from data
-    const handleAddPatient = (newPatient) => {
-        //assign a unique ID to the new pt object
-        const uniqueID = Math.random();
-        const newPatientWithID = { ...newPatient, id: uniqueID };
+    // const handleAddPatient = (newPatient) => {
+    //     //assign a unique ID to the new pt object
+    //     const uniqueID = Math.random();
+    //     const newPatientWithID = { ...newPatient, id: uniqueID };
 
-        //add the new pt w/ unique ID to the patientData array
-        const updatedData = [...patientData, newPatientWithID];
+    //     //add the new pt w/ unique ID to the patientData array
+    //     const updatedData = [...patientData, newPatientWithID];
         
-        //save the updated patientData arry to local storage
-        setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData));
+    //     //save the updated patientData arry to local storage
+    //     setPatientData(updatedData);
+    //     localStorage.setItem("patientData", JSON.stringify(updatedData));
         
-        setIsFormVisible(false);     //hide form after adding a new
+    //     setIsFormVisible(false);     //hide form after adding a new
+    // };
+
+    //function to add a new patient from data
+    const handleAddPatient = async (newPatient) => {
+        try {
+          // Send a POST request to create a new patient
+          const response = await api.post('/patients', newPatient); 
+      
+          if (response.status === 201) {
+            // If the request is successful (status code 201), update the patient data
+            setPatientData([...patientData, response.data]);
+            setIsFormVisible(false); // Hide the form
+          }
+        } catch (error) {
+          console.error('Error adding patient:', error);
+        }
     };
+      
 
     //function to delete a patient from local storage
-    const handleDeletePatient = (patientId) => {
-        const updatedData = patientData.filter((patient) => patient.id !== patientId);
-        setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData));
-    }
+    // const handleDeletePatient = (patientId) => {
+    //     const updatedData = patientData.filter((patient) => patient.id !== patientId);
+    //     setPatientData(updatedData);
+    //     localStorage.setItem("patientData", JSON.stringify(updatedData));
+    // }
+
+    //function to delete a patient from database
+    const handleDeletePatient = async (patientID) => {
+        try {
+          // Send a DELETE request to remove the patient
+          const response = await api.delete(`/patients/${patientID}`); // Replace '/patients' with your API endpoint
+      
+          if (response.status === 204) {
+            // If the request is successful (status code 204), remove the patient from the data
+            const updatedData = patientData.filter((patient) => patient.id !== patientID);
+            setPatientData(updatedData);
+          }
+        } catch (error) {
+          console.error('Error deleting patient:', error);
+        }
+    };
+      
 
     // Function to handle editing a patient
-    const handleEditPatient = (patientID, newData) => {
-        const updatedData = patientData.map((patient) =>
-            patient.id === patientID ? { ...patient, ...newData } : patient
-        );
-        setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData));
-        setIsFormVisible(false);
+    // const handleEditPatient = (patientID, newData) => {
+    //     const updatedData = patientData.map((patient) =>
+    //         patient.id === patientID ? { ...patient, ...newData } : patient
+    //     );
+    //     setPatientData(updatedData);
+    //     localStorage.setItem("patientData", JSON.stringify(updatedData));
+    //     setIsFormVisible(false);
+    // };
+
+    //function to handle editing a patient
+    const handleEditPatient = async (patientID, newData) => {
+        try {
+          // Send a PUT request to update the patient
+          const response = await api.put(`/patients/${patientID}`, newData); // Replace '/patients' with your API endpoint
+      
+          if (response.status === 200) {
+            // If the request is successful (status code 200), update the patient data
+            const updatedData = patientData.map((patient) =>
+              patient.id === patientID ? { ...patient, ...newData } : patient
+            );
+            setPatientData(updatedData);
+            setIsFormVisible(false); // Hide the form
+          }
+        } catch (error) {
+          console.error('Error editing patient:', error);
+        }
     };
+      
 
     //function to handle clicking edit button
     const handleAddNewPatientClick = () => {
@@ -257,9 +342,3 @@ export default PatientListPage;
 //When click on view button in chart will go to dashboardpage
 //When press search button after inputting will got to dshboardpage
 
-
-
-
-//This page is shown after logging in
-//
-//Add new patient feature will be built later
