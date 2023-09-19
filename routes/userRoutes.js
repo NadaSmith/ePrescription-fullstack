@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 // Import necessary functions from auth.js
 const authMiddleware = require('../config/auth');
 

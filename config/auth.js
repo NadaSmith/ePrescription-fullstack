@@ -8,14 +8,14 @@ const secretKey = 'your-secret-key'; //replace with a secure key
 // User registration logic
 const signup = async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { username, password } = req.body;
   
       // Check if the user already exists (you may want to implement this logic)
       // If the user already exists, return an error response
   
       // Create a new user record in your database (e.g., MongoDB with Mongoose)
       // Replace 'User' with your actual User model
-      const newUser = new User({ email, password });
+      const newUser = new User({ username, password });
   
       // Save the user to the database (use async/await or promises)
       await newUser.save();
@@ -36,7 +36,7 @@ const signup = async (req, res) => {
 // User login logic
 const login = async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { username, password } = req.body;
   
       // Authenticate the user (compare credentials with the database)
       // If authentication fails, return an error response

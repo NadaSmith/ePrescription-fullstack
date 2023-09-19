@@ -47,10 +47,10 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
         // Extract user credentials from the request body
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        // Find the user by their email
-        const user = await User.findOne({ email });
+        // Find the user by their username
+        const user = await User.findOne({ username });
 
         // If the user doesn't exist, return an error
         if (!user) {
@@ -66,7 +66,9 @@ exports.loginUser = async (req, res) => {
         }
 
         // Create a JWT token for the logged-in user
-        const token = createJWT(user);
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
+            expiresIn: "24h",
+        });
 
         // Return the user data and token
         res.status(200).json({ user, token });

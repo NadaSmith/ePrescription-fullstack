@@ -1,16 +1,18 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
 const path = require('path');
 const authMiddleware  = require('./config/auth').authMiddleware;
 
 require("./config/database");
 
-
 const port = process.env.PORT || 3001;
+
+//enable CORS for all routes
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'build')));
 
