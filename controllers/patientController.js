@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Patient = require('../models/Patient'); // Import your Patient model
 
 //create a new patient
-const createPatient = async (req, res) => {
+exports.createPatient = async (req, res) => {
     try {
       // Extract patient data from the request body
       const { name, age, gender, birthDate } = req.body;
@@ -20,7 +20,7 @@ const createPatient = async (req, res) => {
 };
 
 //fetch all patients
-const getAllPatients = async (req, res) => {
+exports.getAllPatients = async (req, res) => {
     try {
       // Fetch all patients from the database using the Patient model
       const patients = await Patient.find();
@@ -32,7 +32,7 @@ const getAllPatients = async (req, res) => {
 };
 
 //fetch single patient
-const getPatientById = async (req, res) => {
+exports.getPatientById = async (req, res) => {
     try {
       const patientId = req.params.patientId;
   
@@ -50,7 +50,7 @@ const getPatientById = async (req, res) => {
 };
   
 //update a patient
-const updatePatient = async (req, res) => {
+exports.updatePatient = async (req, res) => {
     try {
       const patientId = req.params.patientId;
       const updatedPatientData = req.body;
@@ -73,7 +73,7 @@ const updatePatient = async (req, res) => {
 };
 
 //delete a patient
-const deletePatient = async (req, res) => {
+exports.deletePatient = async (req, res) => {
     try {
       const patientId = req.params.patientId;
   

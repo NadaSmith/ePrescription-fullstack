@@ -37,6 +37,25 @@ exports.getMedicationById = async (req, res) => {
   }
 };
 
+// Fetch all medications
+exports.getAllMedications = async (req, res) => {
+  try {
+    // Retrieve all medications from the database
+    const medications = await Medication.find();
+
+    // Check if any medications were found
+    if (medications.length === 0) {
+      return res.status(404).json({ message: 'No medications found' });
+    }
+
+    res.status(200).json(medications);
+  } catch (error) {
+    console.error(error); // Log the error for debugging purposes
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
 // Update medication details
 exports.updateMedication = async (req, res) => {
   try {

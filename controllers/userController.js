@@ -1,4 +1,4 @@
-const User = require('../../models/User');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -77,6 +77,28 @@ exports.loginUser = async (req, res) => {
     }
 };
 
+// Fetch User Profile
+exports.getProfile = async (req, res) => {
+    try {
+      // Retrieve the user's ID from the request object
+      const userId = req.userId; // Assuming you store user ID in the request object
+  
+      // Fetch the user's profile from the database based on the user's ID
+      const user = await User.findById(userId);
+  
+      // Check if the user exists
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Return the user's profile
+      res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  };
+
 // Update user profile
 exports.updateUserProfile = async (req, res) => {
   try {
@@ -111,3 +133,4 @@ exports.updateUserProfile = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
+

@@ -1,22 +1,26 @@
 const express = require('express');
 const router = express.Router();
+
+// Import necessary functions from auth.js
+const authMiddleware = require('../config/auth');
+
+//import controller
 const patientController = require('../controllers/patientController');
-const authMiddleware = require('../config/auth').authMiddleware; // Import your authentication middleware
 
 //create a new patient (post)
-router.post('/patients', authMiddleware, patientController.createPatient);
+router.post('/patients', patientController.createPatient);
 
 //fetch all patients (get)
-router.get('/patients', authMiddleware, patientController.getAllPatients);
+router.get('/patients', patientController.getAllPatients);
 
 //fetch single patient by ID (get)
-router.get('/patients/:patientId', authMiddleware, patientController.getPatientById);
+router.get('/patients/:patientId', patientController.getPatientById);
 
-//update a patiet (put)
-router.put('/patients/:patientId', authMiddleware, patientController.updatePatient);
+//update a patient (put)
+router.put('/patients/:patientId', patientController.updatePatient);
 
 //delete a paitent (delete)
-router.delete('/patients/:patientId', authMiddleware, patientController.deletePatient);
+router.delete('/patients/:patientId', patientController.deletePatient);
 
 module.exports = router;
 

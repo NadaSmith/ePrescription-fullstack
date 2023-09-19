@@ -1,30 +1,38 @@
 const express = require('express');
+const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const path = require('path');
+const authMiddleware  = require('./config/auth').authMiddleware;
 
 require("./config/database");
-require('dotenv').config;
-app.use(require('./config/auth'));
+require('dotenv').config();
 
-const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use(express.static(path.join(__dirname, 'build')));
-
-// MongoDB connection setup
-mongoose.connect('mongodb://localhost/ePrescriptionDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(authMiddleware);
+
+//MongoDB connection setup
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true, // Add this line
+  useFindAndModify: false // Add this line
+});
+
 // Define your routes here (authentication, CRUD operations, etc.)
-app.use('/api/users', require('./routes/api/users'));
+app.use('/', require('./routes/medicationRoute'));
 
-app.use('/api/users', require('./routes/api/items'));
+app.use('/', require('./routes/patientRoute'));
 
-app.use('/api/users', require('./routes/api/orders'));
+app.use('/', require('./routes/userRoutes'));
 
 //static catch-all app; always goes last bc want to test everything else first
 app.get('/*', (req, res) => {

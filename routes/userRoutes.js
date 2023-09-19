@@ -1,17 +1,24 @@
 const express = require('express');
 const router = express.Router();
+
+// Import necessary functions from auth.js
+const authMiddleware = require('../config/auth');
+
+//import controller
 const userController = require('../controllers/userController');
-const authMiddleware = require('../config/auth').authMiddleware;
 
 // Define routes for user operations
-router.post('/signup', userController.signup);
-router.post('/login', userController.login);
-router.get('/profile', userController.getProfile);
-router.put('/profile', userController.updateProfile);
 
-router.get('/profile', authMiddleware, (req, res) => {
-    // This route is protected; only authenticated users can access it
-    res.status(200).json({ message: 'Protected route accessed' });
-});
+//signup
+router.post('/signup', userController.registerUser);
+
+//login
+router.post('/login', userController.loginUser);
+
+//fectching user profile (get, protected)
+router.get('/profile', userController.getProfile);
+
+//updating user profile (put, protected)
+router.put('/profile', userController.updateUserProfile);
 
 module.exports = router;
