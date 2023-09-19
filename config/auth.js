@@ -1,9 +1,5 @@
 //contains JWT token generation, middleware, and user registration logic
-
 const jwt = require('jsonwebtoken');
-
-// Your secret key (consider using environment variables)
-const secretKey = 'your-secret-key'; //replace with a secure key
 
 // User registration logic
 const signup = async (req, res) => {
@@ -21,7 +17,7 @@ const signup = async (req, res) => {
       await newUser.save();
   
       // Generate a JWT token
-      const token = jwt.sign({ userId: newUser._id }, secretKey, {
+      const token = jwt.sign({ userId: newUser._id }, SECRET, {
         expiresIn: '1h', // Token expires in 1 hour (adjust as needed)
       });
   
@@ -31,7 +27,6 @@ const signup = async (req, res) => {
     }
 };
 
-// config/auth.js (continued)
 
 // User login logic
 const login = async (req, res) => {
@@ -42,7 +37,7 @@ const login = async (req, res) => {
       // If authentication fails, return an error response
   
       // If authentication is successful, generate a JWT token
-      const token = jwt.sign({ userId: user._id }, secretKey, {
+      const token = jwt.sign({ userId: user._id }, SECRET, {
         expiresIn: '1h', // Token expires in 1 hour (adjust as needed)
       });
   
@@ -72,7 +67,7 @@ const authMiddleware = (req, res, next) => {
 
 // Function to generate a JWT token
 const generateToken = (userId) => {
-  const token = jwt.sign({ userId }, secretKey, {
+  const token = jwt.sign({ userId }, SECRET, {
     expiresIn: '1h', // Token expires in 1 hour (adjust as needed)
   });
   return token;

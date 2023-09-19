@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./LoginPage.css";
+import "./RegistrationPage.css";
 
 
 function LoginPage() {
+
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
@@ -41,15 +43,53 @@ function LoginPage() {
         }
     }
     
-      
+    const navigate = useNavigate();
+
+    function handleLogin() {
+        //navigate to the patientlistpage when the "Log In" button is clicked
+        navigate("/loginpage");
+    }
 
     return (
-        <div className="login">
+        <div className="registration">
 
-            <h1>Log In</h1>
+            <h1>Registration Form</h1>
 
-            <form autoComplete="off" className="login-box">
+            <form autoComplete="off" className="registration-box">
+                
+                <div className="password"> 
+                    <label>First Name</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
 
+                <div className="password"> 
+                    <label>Last Name</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div className="password"> 
+                    <label>Email</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                
                 <div className="username">
                     <label>Username</label>
                     <input 
@@ -74,16 +114,11 @@ function LoginPage() {
 
             </form>
 
-            <div className="checkbox"> 
-                <button></button>
-                <p>Remember me next time</p>
-            </div>
-
-            <div className="login-button">
+            <div className="registration-button">
                 
-                <button className="first-button" onClick={handleLogin}>Log In</button>
+                <button className="first-button" onClick={handleLogin}>Register</button>
                 
-                <button className="second-button">Forgot Password</button>
+            
             </div>
         </div>
     );

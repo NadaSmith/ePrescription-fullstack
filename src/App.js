@@ -4,6 +4,8 @@ import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import PatientListPage from './pages/PatientListPage';
 import AddPrescriptionPage from './pages/AddPrescriptionPage';
+import HomePage from './pages/HomePage';
+import RegistrationPage from './pages/RegistrationPage';
 
 
 
@@ -12,7 +14,9 @@ function App() {
     
     <Router>
       <Routes>
-        <Route path='/*' element={<LoginPage />} />
+        <Route path='/*' element={<HomePage />} />
+        <Route path='/registrationpage' element={<RegistrationPage/>} />
+        <Route path='/loginpage' element={<LoginPage />} />
         <Route path='/patientlistpage' element={<PatientListPage />} />
         <Route path='/dashboardpage/:patientID' element={<DashboardPage />} />
         <Route path='/addprescriptionpage' element={<AddPrescriptionPage />} />

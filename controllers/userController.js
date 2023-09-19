@@ -14,10 +14,10 @@ function createJWT(user) {
 exports.registerUser = async (req, res) => {
   try {
         // Extract user data from the request body
-        const { username, email, password } = req.body;
+        const { username, password } = req.body;
 
         // Check if the user already exists
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ username });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
@@ -26,7 +26,7 @@ exports.registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create a new user using the User model
-        const newUser = new User({ username, email, password: hashedPassword });
+        const newUser = new User({ username, password: hashedPassword });
 
         // Save the new user to the database
         await newUser.save();
