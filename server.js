@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -7,7 +8,7 @@ const path = require('path');
 const authMiddleware  = require('./config/auth').authMiddleware;
 
 require("./config/database");
-require('dotenv').config();
+
 
 const port = process.env.PORT || 3001;
 
